@@ -1,8 +1,9 @@
 -- General Settings
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.wrap = true
+vim.opt.wrap = false
 
 -- Tabs and Indentation
 vim.opt.tabstop = 4
@@ -18,7 +19,25 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Clipboard
-vim.opt.clipboard = "unnamedplus"
+if vim.fn.has("wsl") == 1 and vim.fn.executable("wl-copy") == 1 then
+  vim.g.clipboard = {
+    name = "wl-clipboard-wsl",
+    copy = {
+      ["+"] = "wl-copy --type text/plain",
+      ["*"] = "wl-copy --primary --type text/plain",
+    },
+    paste = {
+      ["+"] = function()
+        return vim.fn.systemlist('wl-paste --no-newline | sed -e "s/\\r$//"')
+      end,
+      ["*"] = function()
+        return vim.fn.systemlist('wl-paste --primary --no-newline | sed -e "s/\\r$//"')
+      end,
+    },
+    cache_enabled = true,
+  }
+  vim.opt.clipboard = "unnamedplus"
+end
 
 -- Mouse Support
 vim.opt.mouse = "a"

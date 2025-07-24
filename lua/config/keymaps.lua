@@ -27,3 +27,9 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 -- Clear search highlights
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+
+-- Code Actions
+vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+	require("tiny-code-action").code_action()
+end, { noremap = true, silent = true })
+
