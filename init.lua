@@ -4,6 +4,8 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.wrap = false
+vim.opt.virtualedit = "onemore"
+vim.keymap.set('n', '<End>', '$l', { noremap = true })
 
 -- Tabs and Indentation
 vim.opt.tabstop = 4

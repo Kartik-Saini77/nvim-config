@@ -1,6 +1,6 @@
 # My Neovim Configuration
 
-A simple, modern Neovim configuration optimized for Go development.
+A simple, modern Neovim Configuration.
 
 ## Features
 
